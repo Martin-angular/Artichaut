@@ -18,6 +18,8 @@ back-build:
     MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
   script:
     - mvn -f back/pom.xml -B compile
+  rules:
+    - exists: ["back/pom.xml"]
 
 back-test:
   stage: test
@@ -30,6 +32,8 @@ back-test:
     MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
   script:
     - mvn -f back/pom.xml -B test
+  rules:
+    - exists: ["back/pom.xml"]
 
 # ---------- FRONT (Vue.js / Vite / Vitest) ----------
 front-build:
@@ -43,6 +47,8 @@ front-build:
     - cd front
     - npm ci
     - npm run build
+  rules:
+    - exists: ["front/package.json"]
 
 front-test:
   stage: test
@@ -55,6 +61,8 @@ front-test:
     - cd front
     - npm ci
     - npm run test
+  rules:
+    - exists: ["front/package.json"]
 
 # ---------- NOTIFY ClickUp ----------
 clickup-notify:
@@ -87,5 +95,6 @@ clickup-notify:
         echo "Erreur lors de l'appel ClickUp (HTTP $HTTP_STATUS)."
         exit 1
       fi
+  needs: []
   rules:
     - if: '$CI_COMMIT_MESSAGE =~ /CU-[a-z0-9]+/'
