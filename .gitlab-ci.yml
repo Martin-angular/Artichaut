@@ -1,0 +1,91 @@
+# Pipeline CI — bac à sable Hôtel Artichaut
+# Build + tests du back (Spring Boot / Maven) et du front (Vue.js / Vitest).
+
+stages:
+  - build
+  - test
+  - notify
+
+# ---------- BACK (Spring Boot / Maven) ----------
+back-build:
+  stage: build
+  image: maven:3.9-eclipse-temurin-17
+  cache:
+    key: maven
+    paths:
+      - .m2/repository
+  variables:
+    MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  script:
+    - mvn -f back/pom.xml -B compile
+
+back-test:
+  stage: test
+  image: maven:3.9-eclipse-temurin-17
+  cache:
+    key: maven
+    paths:
+      - .m2/repository
+  variables:
+    MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  script:
+    - mvn -f back/pom.xml -B test
+
+# ---------- FRONT (Vue.js / Vite / Vitest) ----------
+front-build:
+  stage: build
+  image: node:20
+  cache:
+    key: npm
+    paths:
+      - front/node_modules
+  script:
+    - cd front
+    - npm ci
+    - npm run build
+
+front-test:
+  stage: test
+  image: node:20
+  cache:
+    key: npm
+    paths:
+      - front/node_modules
+  script:
+    - cd front
+    - npm ci
+    - npm run test
+
+# ---------- NOTIFY ClickUp ----------
+clickup-notify:
+  stage: notify
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache curl
+  script:
+    - |
+      TASK_ID=$(echo "$CI_COMMIT_MESSAGE" | grep -oE 'CU-[a-z0-9]+' | head -1 | sed 's/CU-//')
+
+      if [ -z "$TASK_ID" ]; then
+        echo "Aucun identifiant ClickUp trouvé dans le commit, pipeline ignoré."
+        exit 0
+      fi
+
+      echo "Tâche ClickUp détectée : $TASK_ID"
+
+      COMMENT="🔗 Commit GitLab\n\nMessage : $CI_COMMIT_TITLE\nCommit : $CI_COMMIT_SHORT_SHA ($CI_PROJECT_URL/-/commit/$CI_COMMIT_SHA)\nBranche : $CI_COMMIT_REF_NAME\nAuteur : $CI_COMMIT_AUTHOR"
+
+      HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+        "https://api.clickup.com/api/v2/task/$TASK_ID/comment" \
+        -H "Authorization: $CLICKUP_API_TOKEN" \
+        -H "Content-Type: application/json" \
+        -d "{\"comment_text\": \"$COMMENT\"}")
+
+      if [ "$HTTP_STATUS" = "200" ]; then
+        echo "Commentaire posté avec succès sur la tâche ClickUp $TASK_ID."
+      else
+        echo "Erreur lors de l'appel ClickUp (HTTP $HTTP_STATUS)."
+        exit 1
+      fi
+  rules:
+    - if: '$CI_COMMIT_MESSAGE =~ /CU-[a-z0-9]+/'
