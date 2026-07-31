@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 740" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#5b7d68"/>
+    </marker>
+    <marker id="ap" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#b98b3e"/>
+    </marker>
+    <style>
+      .hdr  { fill:#5b7d68; }
+      .body { fill:#ffffff; stroke:#9bb3a4; }
+      .node { fill:#f3f6f4; stroke:#5b7d68; }
+      .ext  { fill:#eef1f4; stroke:#7d8a99; }
+      .cont { fill:#ffffff; stroke:#9bb3a4; }
+      .th   { fill:#ffffff; font-weight:600; font-size:12.5px; }
+      .te   { fill:#2f3d35; font-weight:600; font-size:12px; }
+      .tb   { fill:#2f3d35; font-size:12px; }
+      .ln   { stroke:#5b7d68; stroke-width:1.6; fill:none; }
+      .pull { stroke:#b98b3e; stroke-width:1.4; fill:none; stroke-dasharray:6 4; }
+      .lbl  { fill:#4f5f55; font-size:10px; }
+      .plb  { fill:#b98b3e; font-size:10px; }
+      .title{ fill:#2f3d35; font-size:18px; font-weight:700; }
+    </style>
+  </defs>
+
+  <text x="30" y="34" class="title">Diagramme de déploiement — Hôtel Artichaut</text>
+
+  <!-- Poste développeur -->
+  <rect x="30" y="72" width="170" height="60" rx="7" class="body"/>
+  <rect x="30" y="72" width="170" height="24" rx="7" class="hdr"/>
+  <text x="115" y="89" text-anchor="middle" class="th">Poste développeur</text>
+  <text x="115" y="118" text-anchor="middle" class="tb">Client Git</text>
+
+  <!-- GitLab -->
+  <rect x="250" y="56" width="250" height="186" rx="7" class="node"/>
+  <rect x="250" y="56" width="250" height="24" rx="7" class="hdr"/>
+  <text x="375" y="73" text-anchor="middle" class="th">GitLab — CI/CD</text>
+  <rect x="270" y="90" width="210" height="34" rx="5" class="cont"/><text x="375" y="112" text-anchor="middle" class="tb">Dépôt Git</text>
+  <rect x="270" y="132" width="210" height="34" rx="5" class="cont"/><text x="375" y="154" text-anchor="middle" class="tb">Pipeline CI/CD</text>
+  <rect x="270" y="174" width="210" height="34" rx="5" class="cont"/><text x="375" y="196" text-anchor="middle" class="tb">Runner</text>
+
+  <!-- External services -->
+  <rect x="560" y="64" width="170" height="62" rx="7" class="ext"/>
+  <rect x="560" y="64" width="170" height="22" rx="7" class="hdr"/>
+  <text x="645" y="80" text-anchor="middle" class="th">Maven Central</text>
+  <text x="645" y="110" text-anchor="middle" class="tb">dépendances back</text>
+
+  <rect x="760" y="64" width="170" height="62" rx="7" class="ext"/>
+  <rect x="760" y="64" width="170" height="22" rx="7" class="hdr"/>
+  <text x="845" y="80" text-anchor="middle" class="th">Docker Hub</text>
+  <text x="845" y="110" text-anchor="middle" class="tb">images front · back</text>
+
+  <!-- Staging server -->
+  <rect x="50" y="372" width="380" height="298" rx="8" class="node"/>
+  <rect x="50" y="372" width="380" height="40" rx="8" class="hdr"/>
+  <text x="240" y="389" text-anchor="middle" class="th">Scaleway — STAGING (Docker)</text>
+  <text x="240" y="405" text-anchor="middle" class="th">staging.artichaut.xxx</text>
+  <rect x="75" y="424" width="330" height="52" rx="6" class="cont"/><text x="240" y="455" text-anchor="middle" class="tb">nginx + Vue.js  :80 / :443</text>
+  <rect x="75" y="486" width="330" height="52" rx="6" class="cont"/><text x="240" y="517" text-anchor="middle" class="tb">Spring Boot (API)  :8080</text>
+  <rect x="75" y="548" width="330" height="52" rx="6" class="cont"/><text x="240" y="579" text-anchor="middle" class="tb">PostgreSQL  :5432</text>
+  <text x="240" y="628" text-anchor="middle" class="lbl">Docker runtime</text>
+
+  <!-- Production server -->
+  <rect x="530" y="372" width="380" height="298" rx="8" class="node"/>
+  <rect x="530" y="372" width="380" height="40" rx="8" class="hdr"/>
+  <text x="720" y="389" text-anchor="middle" class="th">Scaleway — PRODUCTION (Docker)</text>
+  <text x="720" y="405" text-anchor="middle" class="th">www.artichaut.xxx</text>
+  <rect x="555" y="424" width="330" height="52" rx="6" class="cont"/><text x="720" y="455" text-anchor="middle" class="tb">nginx + Vue.js  :80 / :443</text>
+  <rect x="555" y="486" width="330" height="52" rx="6" class="cont"/><text x="720" y="517" text-anchor="middle" class="tb">Spring Boot (API)  :8080</text>
+  <rect x="555" y="548" width="330" height="52" rx="6" class="cont"/><text x="720" y="579" text-anchor="middle" class="tb">PostgreSQL  :5432</text>
+  <text x="720" y="628" text-anchor="middle" class="lbl">Docker runtime</text>
+
+  <!-- Utilisateur -->
+  <rect x="390" y="686" width="180" height="40" rx="7" class="body"/>
+  <rect x="390" y="686" width="180" height="24" rx="7" class="hdr"/>
+  <text x="480" y="703" text-anchor="middle" class="th">Utilisateur (navigateur)</text>
+
+  <!-- Arrows -->
+  <path class="ln" d="M200,104 L250,110" marker-end="url(#a)"/>
+  <text x="150" y="98" class="lbl">git push · SSH 22 / 443</text>
+
+  <path class="ln" d="M500,120 L560,102" marker-end="url(#a)"/>
+  <text x="500" y="135" class="lbl">pull deps · 443</text>
+  <path class="ln" d="M500,150 L760,108" marker-end="url(#a)"/>
+  <text x="600" y="165" class="lbl">push image · 443</text>
+
+  <path class="ln" d="M360,242 L245,372" marker-end="url(#a)"/>
+  <text x="250" y="320" class="lbl">deploy · SSH 22</text>
+  <path class="ln" d="M470,242 L715,372" marker-end="url(#a)"/>
+  <text x="600" y="320" class="lbl">deploy · SSH 22</text>
+
+  <path class="pull" d="M820,126 L410,424" marker-end="url(#ap)"/>
+  <path class="pull" d="M850,126 L720,424" marker-end="url(#ap)"/>
+  <text x="640" y="250" class="plb">pull image · 443</text>
+
+  <path class="ln" d="M540,706 L720,478" marker-end="url(#a)"/>
+  <text x="600" y="670" class="lbl">HTTPS 443 (SSL)</text>
+</svg>

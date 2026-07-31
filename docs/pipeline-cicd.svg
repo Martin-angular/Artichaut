@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 690" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#5b7d68"/>
+    </marker>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#b06a5a"/>
+    </marker>
+    <style>
+      .end  { fill:#5b7d68; stroke:#415c4c; }
+      .step { fill:#ffffff; stroke:#9bb3a4; }
+      .te   { fill:#ffffff; font-weight:600; font-size:14px; }
+      .ts   { fill:#2f3d35; font-size:13px; }
+      .ln   { stroke:#5b7d68; stroke-width:1.7; fill:none; }
+      .lbl  { fill:#6b7a70; font-size:11.5px; }
+      .fail { stroke:#b06a5a; stroke-width:1.5; fill:none; stroke-dasharray:5 4; }
+      .flt  { fill:#b06a5a; font-size:11.5px; }
+      .box  { fill:none; stroke:#b98b3e; stroke-width:1.3; stroke-dasharray:6 5; }
+      .title{ fill:#2f3d35; font-size:18px; font-weight:700; }
+      .cap  { fill:#b98b3e; font-size:12px; font-weight:600; }
+    </style>
+  </defs>
+
+  <text x="30" y="34" class="title">Pipeline CI/CD — du push au déploiement</text>
+
+  <!-- Développeur -->
+  <rect x="160" y="52" width="240" height="42" rx="8" class="end"/>
+  <text x="280" y="78" text-anchor="middle" class="te">Développeur</text>
+  <path class="ln" d="M280,94 L280,124" marker-end="url(#a)"/>
+  <text x="290" y="112" class="lbl">git push</text>
+
+  <!-- Dépôt GitLab -->
+  <rect x="160" y="124" width="240" height="42" rx="8" class="end"/>
+  <text x="280" y="150" text-anchor="middle" class="te">Dépôt GitLab</text>
+  <path class="ln" d="M280,166 L280,206" marker-end="url(#a)"/>
+  <text x="290" y="190" class="lbl">déclenche</text>
+
+  <!-- CI/CD container -->
+  <rect x="108" y="206" width="344" height="212" rx="10" class="box"/>
+  <text x="120" y="226" class="cap">GitLab CI/CD — Runner + .gitlab-ci.yml</text>
+
+  <rect x="170" y="238" width="220" height="40" rx="6" class="step"/>
+  <text x="280" y="263" text-anchor="middle" class="ts">Build — Spring Boot + Vue.js</text>
+  <path class="ln" d="M280,278 L280,300" marker-end="url(#a)"/>
+
+  <rect x="170" y="300" width="220" height="40" rx="6" class="step"/>
+  <text x="280" y="325" text-anchor="middle" class="ts">Tests unitaires + fonctionnels</text>
+  <path class="ln" d="M280,340 L280,362" marker-end="url(#a)"/>
+
+  <rect x="170" y="362" width="220" height="40" rx="6" class="step"/>
+  <text x="280" y="387" text-anchor="middle" class="ts">Package — image Docker</text>
+
+  <!-- échec loop -->
+  <path class="fail" d="M170,320 L70,320 L70,73 L160,73" marker-end="url(#ar)"/>
+  <text x="34" y="200" class="flt" transform="rotate(-90 34,200)">échec : corriger</text>
+
+  <!-- Registry (à droite du package) -->
+  <rect x="410" y="362" width="120" height="40" rx="6" class="step"/>
+  <text x="470" y="387" text-anchor="middle" class="ts">Registry</text>
+  <path class="ln" d="M390,382 L410,382" marker-end="url(#a)"/>
+
+  <!-- vers merge/deploy -->
+  <path class="ln" d="M280,418 L280,448" marker-end="url(#a)"/>
+  <text x="290" y="438" class="lbl">MR validée → merge sur main</text>
+
+  <rect x="160" y="448" width="240" height="42" rx="8" class="end"/>
+  <text x="280" y="474" text-anchor="middle" class="te">Déploiement (CD)</text>
+  <path class="ln" d="M470,402 L470,469 L400,469" marker-end="url(#a)"/>
+  <path class="ln" d="M280,490 L280,520" marker-end="url(#a)"/>
+
+  <rect x="160" y="520" width="240" height="42" rx="8" class="end"/>
+  <text x="280" y="546" text-anchor="middle" class="te">Environnement (staging / prod)</text>
+</svg>

@@ -30,6 +30,17 @@ flowchart TD
     O --> P([Séjour réservé ✅])
 ```
 
+## Besoins d'Estelle → traduction dans le parcours
+
+| Besoin d'Estelle | Traduction dans le parcours |
+|---|---|
+| Réserver ses nuitées en ligne | Tunnel de réservation direct, en autonomie (sans passer par la réception) |
+| Réserver son petit-déjeuner | Étape « options » claire, prix mis à jour en direct |
+| Être informée des promotions | Bandeau promo visible dès l'arrivée sur le site |
+| Chercher les bons plans / dépenser moins | Réductions & promo mises en avant, prix affiché tôt |
+| À l'aise numérique, planifie tout sur le net | Parcours fluide, inscription sociale (Google/Facebook) rapide |
+| Frustration : réserver directement nuitées & options | Réservation + options gérées seule, de bout en bout |
+
 ## Étapes clés & attentes de la persona
 
 | Étape | Ce qu'attend Estelle | Point de vigilance UX |

@@ -1,2 +1,7 @@
 .claude/
 .mcp.json
+repos/
+node_modules/
+back/target/
+*.class
+*.jar

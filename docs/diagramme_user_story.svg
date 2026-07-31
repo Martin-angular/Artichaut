@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 880" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#5b7d68"/>
+    </marker>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#b06a5a"/>
+    </marker>
+    <style>
+      .end  { fill:#5b7d68; stroke:#415c4c; }
+      .step { fill:#ffffff; stroke:#9bb3a4; }
+      .dec  { fill:#f6efe0; stroke:#b98b3e; }
+      .te   { fill:#ffffff; font-weight:600; font-size:14px; }
+      .ts   { fill:#2f3d35; font-size:13.5px; }
+      .td   { fill:#7a5a1e; font-weight:600; font-size:13px; }
+      .ln   { stroke:#5b7d68; stroke-width:1.8; fill:none; }
+      .no   { stroke:#b06a5a; stroke-width:1.6; fill:none; stroke-dasharray:5 4; }
+      .oui  { fill:#4f5f55; font-size:12px; }
+      .non  { fill:#b06a5a; font-size:12px; }
+      .title{ fill:#2f3d35; font-size:17px; font-weight:700; }
+    </style>
+  </defs>
+
+  <text x="30" y="34" class="title">Que se passe-t-il quand je push du code ?</text>
+
+  <!-- 1 Dev -->
+  <rect x="160" y="56" width="240" height="46" rx="10" class="end"/>
+  <text x="280" y="84" text-anchor="middle" class="te">Le développeur écrit du code</text>
+  <path class="ln" d="M280,102 L280,132" marker-end="url(#a)"/>
+
+  <!-- 2 push -->
+  <rect x="160" y="132" width="240" height="46" rx="8" class="step"/>
+  <text x="280" y="160" text-anchor="middle" class="ts">Commit + push sur GitLab</text>
+  <path class="ln" d="M280,178 L280,208" marker-end="url(#a)"/>
+
+  <!-- 3 tests -->
+  <rect x="140" y="208" width="280" height="46" rx="8" class="step"/>
+  <text x="280" y="236" text-anchor="middle" class="ts">GitLab lance les tests (auto)</text>
+  <path class="ln" d="M280,254 L280,280" marker-end="url(#a)"/>
+
+  <!-- 4 decision tests -->
+  <polygon points="280,280 380,330 280,380 180,330" class="dec"/>
+  <text x="280" y="335" text-anchor="middle" class="td">Tests OK ?</text>
+  <path class="ln" d="M280,380 L280,410" marker-end="url(#a)"/>
+  <text x="292" y="400" class="oui">Oui</text>
+  <!-- non loop -->
+  <path class="no" d="M180,330 L60,330 L60,79 L160,79" marker-end="url(#ar)"/>
+  <text x="66" y="210" class="non" transform="rotate(-90 66,210)">Non, je corrige</text>
+
+  <!-- 5 review -->
+  <rect x="140" y="410" width="280" height="46" rx="8" class="step"/>
+  <text x="280" y="438" text-anchor="middle" class="ts">Un coéquipier relit le code</text>
+  <path class="ln" d="M280,456 L280,482" marker-end="url(#a)"/>
+
+  <!-- 6 decision review -->
+  <polygon points="280,482 380,532 280,582 180,532" class="dec"/>
+  <text x="280" y="537" text-anchor="middle" class="td">Relecture OK ?</text>
+  <path class="ln" d="M280,582 L280,612" marker-end="url(#a)"/>
+  <text x="292" y="602" class="oui">Oui</text>
+  <!-- non loop 2 -->
+  <path class="no" d="M180,532 L40,532 L40,72 L160,72" marker-end="url(#ar)"/>
+  <text x="30" y="300" class="non" transform="rotate(-90 30,300)">Non, je corrige</text>
+
+  <!-- 7 merge -->
+  <rect x="150" y="612" width="260" height="46" rx="8" class="step"/>
+  <text x="280" y="640" text-anchor="middle" class="ts">Fusion dans le projet</text>
+  <path class="ln" d="M280,658 L280,684" marker-end="url(#a)"/>
+
+  <!-- 8 deploy -->
+  <rect x="150" y="684" width="260" height="46" rx="8" class="step"/>
+  <text x="280" y="712" text-anchor="middle" class="ts">Déploiement automatique</text>
+  <path class="ln" d="M280,730 L280,756" marker-end="url(#a)"/>
+
+  <!-- 9 done -->
+  <rect x="180" y="756" width="200" height="46" rx="10" class="end"/>
+  <text x="280" y="784" text-anchor="middle" class="te">En ligne ✅</text>
+</svg>

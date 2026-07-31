@@ -1,94 +1,65 @@
 # Roadmap — Projet Hôtel Artichaut
 
-**Équipe** : 2-3 développeurs polyvalents (back + front)
-**Stack** : Spring Boot (API REST) / Angular (SPA)
-**Rythme** : itérations de 2 semaines
-**Découpage** : 4 itérations, la première visant le MVP défini par le client
+**Équipe** : 3 (Martin : UX/UI · 2 autres : back / front)
+**Stack** : Spring Boot (API REST) / **Vue.js** (SPA) — *stack officielle du cours*
+**Format** : 4 itérations de 2 semaines · 40 jours / 280 h au total
 
-## Vue d'ensemble
+**Livrables finaux du projet** : le dossier de conception de l'application · un dépôt Git fonctionnel
+(API REST Spring Boot + front Vue.js) · l'URL publique du site déployé avec nom de domaine sécurisé (SSL).
 
-| Itération | Durée | Objectif |
-|---|---|---|
-| 1 — MVP | 2 semaines | Réservation en ligne, comptes clients, gestion basique chambres/tarifs |
-| 2 | 2 semaines | Options de réservation, tarification avancée, emails automatiques |
-| 3 | 2 semaines | CMS du site vitrine (API + contenus), rôles & back-office personnel |
-| 4 | 2 semaines | RGPD, éco-conception, sécurité, CI/CD, communication séjour (météo, QR code) |
+## Vue d'ensemble des itérations
 
----
-
-## Itération 1 — MVP (2 semaines)
-
-### Objectif
-Livrer le socle fonctionnel demandé explicitement par le client : un visiteur peut créer un compte, réserver une chambre, et l'hôtel dispose d'une gestion basique des chambres/tarifs via API.
-
-### Backlog
-
-**Fondations techniques**
-- Initialisation du repo (back Spring Boot + front Angular), conventions de code
-- Modèle de données : chambres (101-110, 201-210, 301-305 standards ; 111/211/306-308 luxe ; 309 suite), tarifs, clients, réservations
-- Setup base de données (schéma évolutif, migrations)
-- Squelette API REST + squelette SPA Angular
-
-**Comptes clients**
-- Inscription par email (nom, prénom, adresse postale)
-- Connexion / authentification (JWT ou session)
-- *Optionnel si le temps le permet* : inscription via Google/Facebook (sinon reporté en itération 2)
-
-**Gestion chambres & tarifs (API, basique)**
-- Endpoint CRUD chambres (numéro, type, capacité, tarif/nuit/personne)
-- Endpoint de disponibilité (dates → chambres libres)
-- Règle : le client ne doit pas changer de chambre pendant son séjour (allocation figée à la réservation)
-
-**Réservation en ligne**
-- Recherche de disponibilité par dates
-- Estimatif de prix (tarif × nuits × personnes, sans options ni réductions fidélité à ce stade — voir itération 2)
-- Saisie empreinte carte bancaire (pas de débit immédiat)
-- Création de la réservation en base
-
-**Tests & qualité**
-- Tests fonctionnels sur chaque route API livrée (format de sortie a minima)
-- Tests unitaires sur la logique de calcul de prix et d'allocation de chambre
-
-### Hors périmètre (reporté)
-Réductions fidélité (10%/25%), options (demi-pension, pension complète, pack confort), emails automatiques, CMS site vitrine, rôles personnel/admin, RGPD, éco-conception, CI/CD — traités dans les itérations suivantes.
-
-### Definition of Done
-- Un visiteur peut s'inscrire, rechercher une disponibilité, obtenir un prix estimatif et réserver une chambre avec empreinte CB.
-- Un administrateur peut créer/modifier une chambre et son tarif via l'API.
-- Les routes livrées ont un test fonctionnel ; la logique de prix a un test unitaire.
-- Le code est démontrable de bout en bout (front → API → base).
+| Itération | Thème |
+|---|---|
+| 1 | Conception du projet & création du modèle de données |
+| 2 | Développement du back-end (CI/CD, tests, Spring Boot) |
+| 3 | Développement du front-end (Vue.js à partir des maquettes) |
+| 4 | Full stack — développement par feature, tests & intégration continue |
 
 ---
 
-## Itération 2 — Réservation avancée & communication (2 semaines)
+## Itération 1 — Conception du projet & modèle de données (10 j / 70 h)
 
-- Réductions fidélité (10% dès 10 nuits, 25% dès 100 nuits)
-- Options de réservation : demi-pension, pension complète, petit-déjeuner seul, pack confort
-- Facturation entreprise (adresse société pour les professionnels)
-- Emails automatiques : confirmation client + notification maître d'hôtel
-- Email "préparer son séjour" (contenu de base, sans météo/QR code — reportés en itération 4 selon complexité)
-- Connexion Google/Facebook si non faite en itération 1
+Composée de **4 modules** :
 
-## Itération 3 — Site vitrine (CMS) & rôles (2 semaines)
+### Module 1 — Gestion de projet
+Livrables : **Backlog**, **Roadmap**.
+Réalisés : `03-backlog.md` (par phases), cette roadmap, + WBS (`02b-wbs-client.md`, `02-wbs.md`), analyse & questions (`01b`, `01c`), arborescence (`05`).
 
-- API sécurisée de gestion de contenu (bandeau promo, sections Hero/Avantages/Vidéo/Avis/Actualités/Footer)
-- Interface d'administration simple (optionnelle selon charge)
-- Gestion des rôles Client / Personnel hôtelier / Administrateur (permissions API)
-- Back-office personnel : accès réservations, fiches clients, facturation
+### Module 2 — Expérience Utilisateur (UX)
+Livrables : **User flow**, **Personæ**.
+Réalisés : 3 personae → 3 user flows (`04`, `06`, `07`). Wireframes/UI à produire.
 
-## Itération 4 — Conformité, sécurité & industrialisation (2 semaines)
+### Module 3 — CI / CD
+Livrables : **un diagramme de déploiement**, les **serveurs staging + prod configurés et prêts**, des **projets GitLab créés** (back-end et front-end).
+Suivi détaillé : `docs/11-suivi-cicd.md`.
 
-- RGPD : durée de conservation, export/suppression des données personnelles sur demande
-- Sécurisation contre attaques malveillantes (durcissement API)
-- Éco-conception : audit et mise en œuvre du référentiel GreenIT (objectif ≥ 30%)
-- QR code "IDENTITÉ" et intégration météo (M2M) dans l'email de préparation au séjour
-- Mise en place de l'intégration continue (CI) incluant les tests
-- Préparation multilingue (si le temps le permet)
+**✅ Validé** : diagramme de déploiement (`09` + svg) · GitFlow défini (`10` + svg) · pipeline CI conçu (`.gitlab-ci.yml`, `08` + svg) · bac à sable de validation (`back/`, `front/`, `SANDBOX.md`) · intégration GitLab ↔ ClickUp testée · **2 projets GitLab séparés créés** (`artichaut-back`, `artichaut-front`) avec `main`+`develop` et **pipeline CI déclenché/vérifié**.
+
+**🔲 À faire** :
+- 1.1 Compléter le diagramme avec IP Scaleway + domaines réels.
+- 1.2 Préparer les serveurs (SSH, clés GitLab↔serveur, nettoyage, Docker, sous-domaines) — *dépend des serveurs formateur*.
+- 1.3 (reste) Ajouter l'équipe aux 2 projets, protéger `main`/`develop` (Merge Requests), stocker les secrets CI, tester par pipelines vides.
+
+### Module 4 — BDD / Conception Technique
+Livrables : **schéma de la stack technique**, **schémas de données**, **scripts SQL** (création, suppression, insertion + exemples).
+À produire.
+
+---
+
+## Itération 2 — Développement du back-end
+Mise en place de la stratégie de dev : CI/CD, tests, et back-end avec Spring Boot (gestion des données et fonctionnalités de base du serveur).
+
+## Itération 3 — Développement du front-end
+Intégration du front Vue.js à partir des maquettes produites : interfaces fonctionnelles et esthétiques, expérience utilisateur.
+
+## Itération 4 — Full stack
+Développement **par feature** en full stack : fonctionnalités finalisées pour l'utilisateur, avec tests et intégration continue.
 
 ---
 
 ## Notes de gestion
 
-- Le backlog de chaque itération pourra être ajusté en fin de sprint précédent selon la vélocité réelle de l'équipe.
-- Les items marqués *optionnel* ou *si le temps le permet* sont les premiers candidats au report en cas de dérapage.
-- Cette roadmap distingue bien le MVP (itération 1) des développements futurs, conformément à la demande du client.
+- Structure conforme au module cours (Moodle) ; approche **itérative et collaborative**.
+- Chaque itération : semaine 1 en travaux guidés, semaine 2 en travaux supervisés (itération 4 entièrement supervisée).
+- Suivi des livrables dans ClickUp ; diagrammes et docs dans `docs/`.
