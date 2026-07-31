@@ -76,6 +76,33 @@ ng serve
 | [docs/01b-notes-lecture-cdc.md](docs/01b-notes-lecture-cdc.md) | Analyse du cahier des charges |
 | [docs/01c-questions-client.md](docs/01c-questions-client.md) | Questions ouvertes à trancher avec le client |
 
+## Bonnes pratiques de commit
+
+Chaque commit doit suivre ce format pour déclencher automatiquement une notification sur la tâche ClickUp correspondante :
+
+```
+<type>: <description courte à l'impératif> CU-<identifiant_tache>
+```
+
+| Type | Usage |
+|------|-------|
+| `feat` | Nouvelle fonctionnalité |
+| `fix` | Correction de bug |
+| `test` | Ajout ou modification de tests |
+| `ci` | Configuration pipeline / CI-CD |
+| `docs` | Documentation |
+| `refactor` | Réorganisation sans changer le comportement |
+| `chore` | Tâche technique (dépendances, config) |
+
+**Exemple :**
+```bash
+git commit -m "feat: ajoute le tunnel de réservation CU-869ebv7br"
+```
+
+> L'identifiant `CU-869ebv7br` est extrait du message : le pipeline poste automatiquement un commentaire sur la tâche ClickUp.
+> Règle stricte : l'ID doit être en **minuscules** et collé au préfixe `CU-`.
+> Guide complet → [docs/12-integration-gitlab-clickup.md](docs/12-integration-gitlab-clickup.md)
+
 ## Équipe
 
 | Membre | Rôle principal |
